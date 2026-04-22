@@ -32,72 +32,140 @@ const CaseStudies = () => {
 
   const cases: CaseStudy[] = [
     {
-      id: "microservices-platform",
-      title: "Microservices Platform Migration",
-      role: "Tech Lead / Solution Architect",
-      shortDesc: "Migrating a legacy monolithic system to a scalable microservices architecture to support high-performance applications.",
-      problem: "The legacy monolithic system was struggling with significant scaling issues and performance bottlenecks during peak traffic, leading to increased latency and system instability.",
+      id: "booking-engine-migration",
+      title: "Global Booking Engine Migration",
+      role: "Tech Lead",
+      shortDesc: "Migrating a legacy monolithic travel booking system to a scalable microservices architecture to support global demand.",
+      problem: "The legacy booking system struggled with massive traffic spikes during seasonal travel peaks, leading to slow search results and inventory synchronization delays.",
       architecture: {
-        design: "Successfully migrated to a microservices architecture using Node.js services coordinated by a centralized API Gateway.",
-        services: ["React (Frontend)", "Node.js (Backend)", "Kafka (Messaging)", "Redis (Caching)", "AWS (Infrastructure)"],
-        dataFlow: "Client Request → API Gateway → Specific Microservice → Kafka (Async Events) → Redis/DB → Response."
+        design: "Successfully migrated to a microservices architecture using Node.js services to handle real-time inventory and booking flows.",
+        services: ["React", "Node.js", "Kafka", "Redis", "AWS (EKS)"],
+        dataFlow: "Search Request → API Gateway → Inventory Service → Cache (Redis) → Real-time Availability Sync via Kafka."
       },
       techDecisions: [
         {
-          choice: "Node.js Microservices",
-          reason: "Non-blocking I/O and lightweight footprint ideal for distributed service-based architecture.",
-          tradeOffs: "Requires robust service discovery and inter-service communication management."
+          choice: "Redis for Inventory Caching",
+          reason: "Ensured millisecond search latency by offloading database queries for high-frequency inventory checks.",
+          tradeOffs: "Required complex cache invalidation logic during confirmed bookings."
         },
         {
-          choice: "Kafka for Async Communication",
-          reason: "Ensures reliable message delivery and decouples services for better scalability and resilience.",
-          tradeOffs: "Increased architectural complexity and infrastructure management overhead."
+          choice: "Kafka for Booking Events",
+          reason: "Ensured reliable, asynchronous delivery of booking confirmations to loyalty and payment services.",
+          tradeOffs: "Introduced eventual consistency across downstream notification systems."
         }
       ],
       challenges: [
-        "Managing distributed data consistency across multiple service boundaries.",
-        "Ensuring zero-downtime migration from the monolith to the new architecture."
+        "Synchronizing real-time inventory across multiple global data centers.",
+        "Ensuring zero-downtime migration during peak holiday booking seasons."
       ],
       impact: [
-        { stat: "500K+", label: "Monthly Trans", outcome: "Stable processing at scale" },
-        { stat: "99.9%", label: "SLA", outcome: "Significant improvement in system reliability" },
-        { stat: "35%", label: "Latency Red", outcome: "Faster response times across all services" }
+        { stat: "500K+", label: "Daily Searches", outcome: "Stable performance during peak load" },
+        { stat: "99.9%", label: "Availability", outcome: "Achieved through auto-scaling and self-healing nodes" },
+        { stat: "40%", label: "Latency Red", outcome: "Significant improvement in search-to-booking speed" }
       ],
-      tags: ["Microservices", "Kafka", "AWS"]
+      tags: ["Travel", "Microservices", "Kafka"]
     },
     {
-      id: "pdf-parsing-system",
-      title: "Bank PDF Extraction Engine",
+      id: "hospitality-data-engine",
+      title: "Hospitality Data Integration Engine",
       role: "Senior Full Stack Engineer",
-      shortDesc: "Automated financial data extraction system handling complex, unstructured PDF bank statements.",
-      problem: "Financial analysts were spending hours manually transcribing data from various bank PDF statements, a process that was both slow and highly susceptible to human error.",
+      shortDesc: "Automated extraction and normalization of guest data from fragmented legacy Property Management Systems (PMS).",
+      problem: "Hospitality groups faced challenges with fragmented guest data stored across multiple legacy PMS formats, making unified guest profiling impossible.",
       architecture: {
-        design: "A pipeline-based extraction system that uses advanced parsing logic to normalize data from hundreds of different bank statement layouts.",
-        services: ["Node.js", "Python (OCR/Parsing)", "PostgreSQL", "AWS Textract", "React (Audit Tool)"],
-        dataFlow: "PDF Upload → Format Detection → Extraction Pipeline → Data Validation → JSON Export → Dashboard."
+        design: "A robust integration layer that extracts, cleans, and normalizes data from various hospitality software providers into a centralized guest profile.",
+        services: ["Node.js", "Python (Normalization)", "PostgreSQL", "AWS SQS", "React (Dashboard)"],
+        dataFlow: "PMS Export → SQS Queue → Normalization Worker → Unified Data Store → Analytics Dashboard."
       },
       techDecisions: [
         {
-          choice: "Hybrid Parsing Logic",
-          reason: "Combined template-based parsing with AI-driven OCR to handle both standard and highly irregular layouts.",
-          tradeOffs: "Required a manual verification step for low-confidence scores."
+          choice: "Pipeline-based Normalization",
+          reason: "Allowed for extensible mapping logic as new PMS providers were integrated into the system.",
+          tradeOffs: "Initial complexity in designing a truly generic data model for diverse guest data."
         },
         {
-          choice: "Python for Data Processing",
-          reason: "Rich ecosystem of data science and PDF manipulation libraries (Pandas, PDFPlumber).",
-          tradeOffs: "Cross-language communication overhead between Node.js and Python workers."
+          choice: "SQS for Job Queuing",
+          reason: "Decoupled data extraction from processing to handle high-volume batch imports from hotel chains.",
+          tradeOffs: "Required robust error handling for failed normalization tasks."
         }
       ],
       challenges: [
-        "Normalizing varying date formats and transaction descriptions across 50+ global banks.",
-        "Accurately identifying table boundaries in multi-page statements with overlapping text."
+        "Reconciling duplicate guest profiles across inconsistent data formats.",
+        "Managing large-scale data migrations with strict security and privacy requirements."
       ],
       impact: [
-        { stat: "90%", label: "Time Saved", outcome: "Reduced manual effort from hours to minutes" },
-        { stat: "99.8%", label: "Accuracy", outcome: "Significant reduction in data entry errors" },
-        { stat: "50+", label: "Banks", outcome: "Support for global financial institutions" }
+        { stat: "90%", label: "Effort Saved", outcome: "Automated manual data reconciliation processes" },
+        { stat: "99.5%", label: "Data Accuracy", outcome: "High-confidence unified guest profiles" },
+        { stat: "1M+", label: "Profiles", outcome: "Consolidated across 100+ hotel properties" }
       ],
-      tags: ["Data Engineering", "Automation", "Fintech"]
+      tags: ["Hospitality", "Data Engineering", "Automation"]
+    },
+    {
+      id: "genai-integration",
+      title: "Enterprise GenAI Platform",
+      role: "Tech Lead",
+      shortDesc: "Integrating LLMs (GPT-4, Claude) into enterprise workflows to automate support and intelligence.",
+      problem: "The client needed to reduce support overhead and improve data-driven decision-making by leveraging Large Language Models, but faced challenges with data privacy and prompt engineering at scale.",
+      architecture: {
+        design: "A secure AI gateway that orchestrates requests between internal data sources and external LLM providers with robust filtering and monitoring.",
+        services: ["Node.js", "LangChain", "OpenAI / Anthropic APIs", "Vector DB (Pinecone)", "Redis"],
+        dataFlow: "User Query → Privacy Filter → Context Retrieval (Vector DB) → Prompt Construction → LLM Request → Response Validation."
+      },
+      techDecisions: [
+        {
+          choice: "LangChain Framework",
+          reason: "Modular components for chaining LLM calls and managing memory/state effectively.",
+          tradeOffs: "Abstraction layer can sometimes limit fine-grained control over underlying API calls."
+        },
+        {
+          choice: "Vector DB (Pinecone)",
+          reason: "Managed, high-performance vector search for Retrieval-Augmented Generation (RAG).",
+          tradeOffs: "Added external dependency and data synchronization complexity."
+        }
+      ],
+      challenges: [
+        "Mitigating 'hallucination' risks through advanced prompt engineering and context verification.",
+        "Managing API rate limits and costs for high-volume enterprise traffic."
+      ],
+      impact: [
+        { stat: "40%", label: "Support Reduction", outcome: "Automated majority of L1 support queries" },
+        { stat: "< 2s", label: "Response Time", outcome: "Near real-time AI-driven interactions" },
+        { stat: "Secure", label: "Compliance", outcome: "Zero PII exposure to external AI providers" }
+      ],
+      tags: ["GenAI", "LLM", "RAG"]
+    },
+    {
+      id: "dc-dest-xt",
+      title: "dc-dest-xt Core Engine",
+      role: "Lead Engineer",
+      shortDesc: "Next.js + Turborepo monorepo architecture for a headless CMS-driven enterprise application.",
+      problem: "Managing multiple large-scale applications with shared UI components was leading to significant code duplication and slow CI/CD pipelines.",
+      architecture: {
+        design: "A monorepo structure using Turborepo to manage 30+ reusable UI components, integrated with AEM headless CMS.",
+        services: ["Next.js", "Turborepo", "TypeScript", "AEM (Headless)", "Jest / Storybook"],
+        dataFlow: "AEM Content → GraphQL → Custom Mapping Layer → Next.js (ISR) → Reusable UI Components."
+      },
+      techDecisions: [
+        {
+          choice: "Turborepo for Monorepo",
+          reason: "Intelligent caching and parallel task execution significantly reduced build times.",
+          tradeOffs: "Requires disciplined dependency management across the workspace."
+        },
+        {
+          choice: "Storybook for Component Dev",
+          reason: "Isolated component development and documentation for the design system.",
+          tradeOffs: "Extra maintenance effort to keep stories updated with component changes."
+        }
+      ],
+      challenges: [
+        "Designing a flexible custom data mapping layer to translate AEM's complex JSON into clean component props.",
+        "Ensuring full ARIA compliance and keyboard navigation across 30+ interactive components."
+      ],
+      impact: [
+        { stat: "30+", label: "UI Components", outcome: "Fully reusable, accessible design system" },
+        { stat: "80%", label: "Build Speedup", outcome: "Drastic reduction in CI/CD wait times" },
+        { stat: "AEM", label: "Seamless Integration", outcome: "Decoupled content management from delivery" }
+      ],
+      tags: ["Next.js", "Turborepo", "AEM"]
     }
   ]
 
@@ -110,10 +178,9 @@ const CaseStudies = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 gradient-text">Case Studies</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 gradient-text">Recent Work</h2>
           <p className="text-white/60 max-w-2xl">
-            A deep dive into complex technical challenges, the strategic decisions made, 
-            and the tangible impact delivered.
+            Technical breakdowns of systems I've architected and delivered, focusing on the decisions and trade-offs made along the way.
           </p>
         </motion.div>
 

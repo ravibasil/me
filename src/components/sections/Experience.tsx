@@ -57,8 +57,8 @@ const Experience = () => {
           transition={{ duration: 0.8, ease: [0.42, 0, 0.58, 1] }}
           className="mb-24 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 gradient-text">Professional Journey</h2>
-          <p className="text-white/60 max-w-2xl mx-auto">A strategic path of technical leadership and architectural innovation.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 gradient-text">Experience</h2>
+          <p className="text-white/60 max-w-2xl mx-auto">I focus on building resilient systems and leading engineering teams through technical challenges.</p>
         </motion.div>
 
         <div ref={containerRef} className="relative">

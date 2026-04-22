@@ -26,7 +26,7 @@ function App() {
       </main>
       <footer className="py-12 border-t border-white/5 text-center text-white/20 text-xs">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© {new Date().getFullYear()} Ravi Basil. Solution Architecture & Engineering.</p>
+          <p>© {new Date().getFullYear()} Ravi Basil. Full Stack Engineering.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white/60 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white/60 transition-colors">Legal</a>

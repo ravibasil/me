@@ -67,7 +67,7 @@ const Hero = () => {
       >
         <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-blue-400 mb-8 tracking-wide">
           <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-          Tech Lead & Solution Architect
+          Tech Lead / Senior Software Engineer
         </motion.div>
         
         <motion.h1 
@@ -81,7 +81,7 @@ const Hero = () => {
           variants={itemVariants}
           className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed font-medium"
         >
-          Tech Lead with 9+ years building microservices platforms, cloud-native systems, and AI-powered solutions across fintech and SaaS.
+          Tech Lead with 9+ years building microservices platforms, cloud-native systems, and AI-powered solutions across travel, hospitality, and SaaS.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-6 mb-20">
@@ -109,32 +109,32 @@ const Hero = () => {
           variants={itemVariants}
           className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto border-t border-white/5 pt-12"
         >
-          {[
-            { label: "Systems Handled", value: "500K+", sub: "Monthly Trans" },
-            { label: "Architecture", value: "99.9%", sub: "SLA Guaranteed" },
-            { label: "Stack Focus", value: "AWS + K8s", sub: "Kafka Clusters" }
-          ].map((stat, i) => (
-            <div key={i} className="text-center group">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">{stat.value}</div>
-              <div className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-widest">{stat.label}</div>
-              <div className="text-[10px] text-white/20">{stat.sub}</div>
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Feature Grid Brief */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 1, ease: [0.42, 0, 0.58, 1] }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 w-full max-w-6xl"
-      >
         {[
-          { icon: Cpu, label: "Distributed Systems", desc: "High-concurrency architecture for resilient platforms", color: "text-blue-400" },
-          { icon: Layers, label: "Full Stack Mastery", desc: "Expertise in React, Next.js, and Node.js ecosystems", color: "text-purple-400" },
-          { icon: Zap, label: "AI Integration", desc: "Harnessing LLMs (GPT-4, Claude) for enterprise scale", color: "text-indigo-400" }
-        ].map((item, index) => (
+          { label: "Platform Scale", value: "500K+", sub: "Daily Searches" },
+          { label: "Availability", value: "99.9%", sub: "Uptime SLA" },
+          { label: "Architecture", value: "Hybrid", sub: "Cloud-Native" }
+        ].map((stat, i) => (
+          <div key={i} className="text-center group">
+            <div className="text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">{stat.value}</div>
+            <div className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-widest">{stat.label}</div>
+            <div className="text-[10px] text-white/20">{stat.sub}</div>
+          </div>
+        ))}
+      </motion.div>
+    </motion.div>
+
+    {/* Feature Grid Brief */}
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 1, ease: [0.42, 0, 0.58, 1] }}
+      className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 w-full max-w-6xl"
+    >
+      {[
+        { icon: Cpu, label: "System Architecture", desc: "Designing high-concurrency, distributed platforms", color: "text-blue-400" },
+        { icon: Layers, label: "Full Stack Engineering", desc: "Building across the entire React and Node.js ecosystem", color: "text-purple-400" },
+        { icon: Zap, label: "LLM Integration", desc: "Implementing GenAI capabilities for enterprise applications", color: "text-indigo-400" }
+      ].map((item, index) => (
           <div key={index} className="glass-card p-8 flex flex-col gap-4 group hover:border-white/20 transition-all hover:bg-white/[0.05]">
             <item.icon className={`w-8 h-8 ${item.color}`} />
             <h3 className="text-xl font-bold">{item.label}</h3>
